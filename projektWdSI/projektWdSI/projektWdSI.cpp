@@ -29,8 +29,9 @@ public:
 		}
 		ocena = 0;
 	};
+	osobnik(bool _chromosom[], double _ocena) { *chromosom  = _chromosom; ocena = _ocena; }
 };
-
+//=y
 double osobnik::przystosowanie(double x)
 {
 	return  x + sin(3 * cos(5 * x));
@@ -48,28 +49,31 @@ int kodowanieBinarne(osobnik ob)
 	return x;
 }
 
-double losuj_string()
+
+double losuj_z_przedzialu()
 {
-	double los[21];
+	double los;
 
 	for (int j = 0; j < dlugosc; j++)
 	{
-		los[j] += rand() % 20000;
-		los[j] /= 10000;
+		los += rand() % 20000;
+		los /= 10000;
 		cout << los << endl;
 	}
 
-	return *los;
+	return los;
 }
 
 void init_populacja(vector <osobnik> &populacja)
 {
-	double os;
+	double  os;
+	//*os=losuj_z_przedzialu();
+	
 	srand(time(NULL));
 	for (int i = 0; i < wielkosc_populacji; i++)
 	{
-		os = losuj_string();
-		osobnik nowy(os, 0);
+		os = losuj_z_przedzialu();
+		osobnik nowy(os, 0.0);
 		populacja.push_back(nowy);
 	}
 }
@@ -83,7 +87,8 @@ void init_populacja(vector <osobnik> &populacja)
 
 bool porownaj(osobnik o1, osobnik o2)
 {
-	if (o1.przystosowanie() < o2.przystosowanie())
+
+	if (o1.przystosowanie(o1.chromosom) < o2.przystosowanie())
 		return true;
 	else
 		return false;
@@ -121,16 +126,16 @@ void krzyzowanie(vector <osobnik> &ps, vector <osobnik> &pn, int esize)
 	for (int i = esize; i<wielkosc_populacji; i += 2)
 	{
 		i1 = rand() % podzb_krzyz;
-		i2 = rand() % podzb_krzyz;
+		//i2 = rand() % podzb_krzyz;
 		podzial = rand() % dlugosc;
 		osobnik nowy_os1(ps[i1].chromosom.substr(0, podzial) + ps[i2].chromosom.substr(podzial, dlugosc), 0);
-		osobnik nowy_os2(ps[i2].chromosom.substr(0, podzial) + ps[i1].chromosom.substr(podzial, dlugosc), 0);
+		//osobnik nowy_os2(ps[i2].chromosom.substr(0, podzial) + ps[i1].chromosom.substr(podzial, dlugosc), 0);
 		if (losuj()<mutacja_prawd)
 			mutacja(nowy_os1);
-		if (losuj()<mutacja_prawd)
-			mutacja(nowy_os2);
+		//if (losuj()<mutacja_prawd)
+			//mutacja(nowy_os2);
 		pn.push_back(nowy_os1);
-		pn.push_back(nowy_os2);
+		//pn.push_back(nowy_os2);
 	}
 }
 
