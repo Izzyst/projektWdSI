@@ -85,7 +85,7 @@ bool porownaj(osobnik o1, osobnik o2)
 	else
 		return false;
 }
-
+/////////
 void swap(vector <osobnik> &ps, vector <osobnik> &pn, int esize)
 {
 	for (int i = 0; i<esize; i++)
