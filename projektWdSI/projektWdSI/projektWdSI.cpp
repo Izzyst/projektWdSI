@@ -50,14 +50,16 @@ int kodowanieBinarne(osobnik ob)
 
 double losuj_string()
 {
-	double los;
+	double los[21];
 
-	for (int j = 0; j < 10; j++)
-		los += rand() % 20000;    // losowanie z przedzialu [0,2]
-	los /= 10000;
-	cout << los << endl;
+	for (int j = 0; j < dlugosc; j++)
+	{
+		los[j] += rand() % 20000;
+		los[j] /= 10000;
+		cout << los << endl;
+	}
 
-	return los;
+	return *los;
 }
 
 void init_populacja(vector <osobnik> &populacja)
@@ -86,7 +88,7 @@ bool porownaj(osobnik o1, osobnik o2)
 	else
 		return false;
 }
-/////////
+
 void swap(vector <osobnik> &ps, vector <osobnik> &pn, int esize)
 {
 	for (int i = 0; i<esize; i++)
