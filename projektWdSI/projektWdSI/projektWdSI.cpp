@@ -19,7 +19,7 @@ using namespace std;
 
 class osobnik {
 public:
-	bool chromosom[23];
+	bool chromosom[21];
 	double ocena;
 	double przystosowanie(double x);
 	osobnik() {
@@ -40,28 +40,28 @@ double osobnik::przystosowanie(double x)
 int kodowanieBinarne(osobnik ob)
 {
 	int x = 0;
-	for (int i = 0; i < 23; i++)
+	for (int i = 0; i < 21; i++)
 	{
 		if (ob.chromosom[i])
 			x += pow(2, i);
 	}
 	return x;
 }
-/*
-string losuj_string()
-{
-	string los;
 
-	for (int j = 0; j < dlugosc; j++)
+double losuj_string()
+{
+	double los;
+
+	for (int j = 0; j < 10; j++)
 		los += rand() % 95 + 32;
 	cout << los << endl;
 
 	return los;
 }
-*/
+
 void init_populacja(vector <osobnik> &populacja)
 {
-	string os;
+	double os;
 	srand(time(NULL));
 	for (int i = 0; i < wielkosc_populacji; i++)
 	{
@@ -71,16 +71,16 @@ void init_populacja(vector <osobnik> &populacja)
 	}
 }
 
-void fitness(vector <osobnik> &p)
+/*void fitness(vector <osobnik> &p)
 {
 	for (int i = 0; i < wielkosc_populacji; i++)
 		for (int j = 0; j < dlugosc; j++)
 			p[i].fitness += (abs(int(p[i].chromosom[j] - stala[j])));
-}
+}*/
 
 bool porownaj(osobnik o1, osobnik o2)
 {
-	if (o1.fitness < o2.fitness)
+	if (o1.przystosowanie() < o2.przystosowanie())
 		return true;
 	else
 		return false;
