@@ -53,7 +53,8 @@ double losuj_string()
 	double los;
 
 	for (int j = 0; j < 10; j++)
-		los += rand() % 95 + 32;
+		los += rand() % 20000;    // losowanie z przedzialu [0,2]
+	los /= 10000;
 	cout << los << endl;
 
 	return los;
