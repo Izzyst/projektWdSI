@@ -9,7 +9,7 @@
 #include <algorithm>
 //#define stala "Lubie WdSI"
 #define wielkosc_populacji 2048
-//#define dlugosc 10
+#define dlugosc 21
 #define iteracja_maks 200
 #define wsp_elitaryzmu 0.05
 #define mutacja_prawd 0.2
@@ -23,7 +23,7 @@ public:
 	double ocena;
 	double przystosowanie(double x);
 	osobnik() {
-		for (int i = 0; i < 23; i++)
+		for (int i = 0; i < 21; i++)
 		{
 			chromosom[i] = NULL;
 		}
